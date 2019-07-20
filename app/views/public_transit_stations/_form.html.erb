@@ -1,0 +1,42 @@
+<%= form_with(model: public_transit_station, local: true) do |form| %>
+  <% if public_transit_station.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(public_transit_station.errors.count, "error") %> prohibited this public_transit_station from being saved:</h2>
+
+      <ul>
+      <% public_transit_station.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :dhid %>
+    <%= form.text_field :dhid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dtzid %>
+    <%= form.text_field :dtzid %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

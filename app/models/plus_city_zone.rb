@@ -1,0 +1,2 @@
+class PlusCityZone < ApplicationRecord
+end

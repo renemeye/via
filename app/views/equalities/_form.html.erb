@@ -1,0 +1,52 @@
+<%= form_with(model: equality, local: true) do |form| %>
+  <% if equality.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(equality.errors.count, "error") %> prohibited this equality from being saved:</h2>
+
+      <ul>
+      <% equality.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tarif_point_name %>
+    <%= form.text_field :tarif_point_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ibnr %>
+    <%= form.number_field :ibnr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :equality_type %>
+    <%= form.text_field :equality_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :min_km %>
+    <%= form.number_field :min_km %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price_forming_tarif_point_name %>
+    <%= form.text_field :price_forming_tarif_point_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price_forming_tarif_point_ibnr %>
+    <%= form.number_field :price_forming_tarif_point_ibnr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :collective_name %>
+    <%= form.text_field :collective_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

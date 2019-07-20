@@ -1,0 +1,2 @@
+class PublicTransitStation < ApplicationRecord
+end

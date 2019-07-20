@@ -10,3 +10,7 @@ d.sheets().each{|s| sheet = d.sheet(s); (2..sheet.last_row).each{|r| row = sheet
 d = Roo::Spreadsheet.open('
 
 d.sheets().each{|s| sheet = d.sheet(s); (3..sheet.last_row).each{|r| row = sheet.row(r); TarifPoint.where(ibnr: (row[0].to_i - 8000000)).update_all(eva_nr: row[0], ds100: row[1], dhid: row[2], latitude: row[6], longitude: row[5]) } }
+
+d = Roo::Spreadsheet.open('
+
+d.sheets().each{|s| sheet = d.sheet(s); (2..sheet.last_row).each{|r| row = sheet.row(r); Equality.create( tarif_point_name: row[0], ibnr: row[1], equality_type: row[2], min_km: row[3], price_forming_tarif_point_name: row[4], price_forming_tarif_point_ibnr: row[5], collective_name: row[6] ) } }

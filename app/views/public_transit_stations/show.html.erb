@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Dhid:</strong>
+  <%= @public_transit_station.dhid %>
+</p>
+
+<p>
+  <strong>Dtzid:</strong>
+  <%= @public_transit_station.dtzid %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @public_transit_station.name %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @public_transit_station.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @public_transit_station.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_public_transit_station_path(@public_transit_station) %> |
+<%= link_to 'Back', public_transit_stations_path %>

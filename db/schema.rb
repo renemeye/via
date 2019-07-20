@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_20_004940) do
+ActiveRecord::Schema.define(version: 2019_07_20_095407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "equalities", force: :cascade do |t|
+    t.string "tarif_point_name"
+    t.integer "ibnr"
+    t.string "equality_type"
+    t.integer "min_km"
+    t.string "price_forming_tarif_point_name"
+    t.integer "price_forming_tarif_point_ibnr"
+    t.string "collective_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "plus_city_zones", force: :cascade do |t|
+    t.string "dtzid"
+    t.string "city_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "public_transit_stations", force: :cascade do |t|
+    t.string "dhid"
+    t.string "dtzid"
+    t.string "name"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tarif_distances", force: :cascade do |t|
     t.string "from_name"

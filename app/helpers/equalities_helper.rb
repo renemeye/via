@@ -1,0 +1,2 @@
+module EqualitiesHelper
+end

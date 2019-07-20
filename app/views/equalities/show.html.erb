@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tarif point name:</strong>
+  <%= @equality.tarif_point_name %>
+</p>
+
+<p>
+  <strong>Ibnr:</strong>
+  <%= @equality.ibnr %>
+</p>
+
+<p>
+  <strong>Equality type:</strong>
+  <%= @equality.equality_type %>
+</p>
+
+<p>
+  <strong>Min km:</strong>
+  <%= @equality.min_km %>
+</p>
+
+<p>
+  <strong>Price forming tarif point name:</strong>
+  <%= @equality.price_forming_tarif_point_name %>
+</p>
+
+<p>
+  <strong>Price forming tarif point ibnr:</strong>
+  <%= @equality.price_forming_tarif_point_ibnr %>
+</p>
+
+<p>
+  <strong>Collective name:</strong>
+  <%= @equality.collective_name %>
+</p>
+
+<%= link_to 'Edit', edit_equality_path(@equality) %> |
+<%= link_to 'Back', equalities_path %>

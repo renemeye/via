@@ -1,0 +1,152 @@
+<div id='map'></div>
+<div id="content">
+  <p>Tarif: <%=@tarif%></p>
+  <p>Von: <%=@from%></p>
+  <p>Vias: </p>
+    <ul>
+      <% @vias.each do |via| %>
+        <li>
+          <%=via.via_string%>
+          <ul>
+            <% via.tarif_points.each do |tarif_point|%>
+              <li>
+                <%= tarif_point.name %> (<%= tarif_point.longitude %>, <%= tarif_point.latitude %>)
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  <p>To: <%=@to%></p>
+</div>
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoidmVzcHV0aSIsImEiOiJjaXAzM3g4ZTEwMDExdnRtMnJ6Ym40MnAwIn0.iIbZV29nJiYy-4dwbsfPkw';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/vesputi/cjybdl0hg157u1ck0pvqu1hid',
+    center: [10.414444, 53.2525],
+    zoom: 9
+  });
+
+  var city_zone_hulls = [
+    <% if @from.is_city_ticket? %>
+      turf.concave({
+        "type": "FeatureCollection",
+        "features": <%=@from.city_ticket.to_json.html_safe%>
+      }),
+    <% end %>
+    <% if @to.is_city_ticket? %>
+    turf.concave({
+      "type": "FeatureCollection",
+      "features": <%=@to.city_ticket.to_json.html_safe%>
+    }),
+  <% end %>
+];
+
+  map.on('load', function () {
+
+    map.addLayer({
+      "id": "public_transit",
+      "type": "circle",
+      "source": {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": <%=[@to.city_ticket,@from.city_ticket].flatten(1).to_json.html_safe%>
+        },
+      },
+      "layout": {
+      },
+      "paint": {
+        "circle-color": "#5cc9f5",
+        "circle-radius": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          0,
+          1,
+          9,
+          1,
+          11,
+          4
+        ]
+      }
+    },"road-label");
+
+    map.addLayer({
+      "id": "equalities",
+      "type": "circle",
+      "source": {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": <%=[@from, @to].collect(&:equality_geojson).flatten(1).to_json.html_safe%>
+        },
+      },
+      "layout": {
+      },
+      "paint": {
+        "circle-color": "#fff",
+        "circle-radius": 4
+      }
+    },"road-label");
+
+    map.addLayer({
+      "id": "city_area_background",
+      "type": "fill",
+      "source": {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": city_zone_hulls
+        },
+      },
+      "layout": {
+      },
+      "paint": {
+        "fill-color": "rgba(92, 201, 245, 0.30)",
+      }
+    },"road-label");
+
+    map.addLayer({
+      "id": "city_area",
+      "type": "line",
+      "source": {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": city_zone_hulls
+        },
+      },
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#5cc9f5",
+        "line-width": 3
+      }
+    },"road-label");
+
+    map.addLayer({
+      "id": "route",
+      "type": "line",
+      "source": {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": <%=@vias.collect(&:geojson).to_json.html_safe%>
+        },
+      },
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#97ff94",
+        "line-width": 10
+      }
+    },"road-label");
+  });
+</script>

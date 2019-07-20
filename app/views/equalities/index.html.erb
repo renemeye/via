@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Equalities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tarif point name</th>
+      <th>Ibnr</th>
+      <th>Equality type</th>
+      <th>Min km</th>
+      <th>Price forming tarif point name</th>
+      <th>Price forming tarif point ibnr</th>
+      <th>Collective name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @equalities.each do |equality| %>
+      <tr>
+        <td><%= equality.tarif_point_name %></td>
+        <td><%= equality.ibnr %></td>
+        <td><%= equality.equality_type %></td>
+        <td><%= equality.min_km %></td>
+        <td><%= equality.price_forming_tarif_point_name %></td>
+        <td><%= equality.price_forming_tarif_point_ibnr %></td>
+        <td><%= equality.collective_name %></td>
+        <td><%= link_to 'Show', equality %></td>
+        <td><%= link_to 'Edit', edit_equality_path(equality) %></td>
+        <td><%= link_to 'Destroy', equality, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Equality', new_equality_path %>
