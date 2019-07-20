@@ -1,0 +1,12 @@
+(2..d.sheet(0).last_row).each{|r| TarifPoint.create(name: d.sheet(0).row(r)[0], ibnr: d.sheet(0).row(r)[1], status: d.sheet(0).row(r)[2], network: d.sheet(0).row(r)[3], regions: d.sheet(0).row(r)[4], equality_treatments: d.sheet(0).row(r)[5] == '*')}
+
+
+d.sheets().each{|s| sheet = d.sheet(s); (2..sheet.last_row).each{|r| row = sheet.row(r); TarifDistance.create(from_name: row[0], from_ibnr: row[1], to_name: row[2], to_ibnr: row[3], tarif_kilometer: row[4], bus: row[5] == 'x', around: row[6] == 'A', exclusion_way: row[7] == 'x', region: row[8] ) } }
+
+d = Roo::Spreadsheet.open('
+
+d.sheets().each{|s| sheet = d.sheet(s); (2..sheet.last_row).each{|r| row = sheet.row(r); TarifPoint.where(ibnr: row[2]).first.update(abbreviation: row[3]) } }
+
+d = Roo::Spreadsheet.open('
+
+d.sheets().each{|s| sheet = d.sheet(s); (3..sheet.last_row).each{|r| row = sheet.row(r); TarifPoint.where(ibnr: (row[0].to_i - 8000000)).update_all(eva_nr: row[0], ds100: row[1], dhid: row[2], latitude: row[6], longitude: row[5]) } }

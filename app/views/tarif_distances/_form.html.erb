@@ -1,0 +1,62 @@
+<%= form_with(model: tarif_distance, local: true) do |form| %>
+  <% if tarif_distance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tarif_distance.errors.count, "error") %> prohibited this tarif_distance from being saved:</h2>
+
+      <ul>
+      <% tarif_distance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :from_name %>
+    <%= form.text_field :from_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :from_ibnr %>
+    <%= form.number_field :from_ibnr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to_name %>
+    <%= form.text_field :to_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to_ibnr %>
+    <%= form.number_field :to_ibnr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tarif_kilometer %>
+    <%= form.number_field :tarif_kilometer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bus %>
+    <%= form.check_box :bus %>
+  </div>
+
+  <div class="field">
+    <%= form.label :around %>
+    <%= form.check_box :around %>
+  </div>
+
+  <div class="field">
+    <%= form.label :exclusion_way %>
+    <%= form.check_box :exclusion_way %>
+  </div>
+
+  <div class="field">
+    <%= form.label :region %>
+    <%= form.text_field :region %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

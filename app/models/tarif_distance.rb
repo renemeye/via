@@ -1,0 +1,2 @@
+class TarifDistance < ApplicationRecord
+end

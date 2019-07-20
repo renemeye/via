@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tarif_point.name %>
+</p>
+
+<p>
+  <strong>Ibnr:</strong>
+  <%= @tarif_point.ibnr %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @tarif_point.status %>
+</p>
+
+<p>
+  <strong>Network:</strong>
+  <%= @tarif_point.network %>
+</p>
+
+<p>
+  <strong>Regions:</strong>
+  <%= @tarif_point.regions %>
+</p>
+
+<p>
+  <strong>Equality treatments:</strong>
+  <%= @tarif_point.equality_treatments %>
+</p>
+
+<%= link_to 'Edit', edit_tarif_point_path(@tarif_point) %> |
+<%= link_to 'Back', tarif_points_path %>

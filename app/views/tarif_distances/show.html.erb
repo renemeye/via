@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>From name:</strong>
+  <%= @tarif_distance.from_name %>
+</p>
+
+<p>
+  <strong>From ibnr:</strong>
+  <%= @tarif_distance.from_ibnr %>
+</p>
+
+<p>
+  <strong>To name:</strong>
+  <%= @tarif_distance.to_name %>
+</p>
+
+<p>
+  <strong>To ibnr:</strong>
+  <%= @tarif_distance.to_ibnr %>
+</p>
+
+<p>
+  <strong>Tarif kilometer:</strong>
+  <%= @tarif_distance.tarif_kilometer %>
+</p>
+
+<p>
+  <strong>Bus:</strong>
+  <%= @tarif_distance.bus %>
+</p>
+
+<p>
+  <strong>Around:</strong>
+  <%= @tarif_distance.around %>
+</p>
+
+<p>
+  <strong>Exclusion way:</strong>
+  <%= @tarif_distance.exclusion_way %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @tarif_distance.region %>
+</p>
+
+<%= link_to 'Edit', edit_tarif_distance_path(@tarif_distance) %> |
+<%= link_to 'Back', tarif_distances_path %>

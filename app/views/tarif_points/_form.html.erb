@@ -1,0 +1,47 @@
+<%= form_with(model: tarif_point, local: true) do |form| %>
+  <% if tarif_point.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tarif_point.errors.count, "error") %> prohibited this tarif_point from being saved:</h2>
+
+      <ul>
+      <% tarif_point.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ibnr %>
+    <%= form.number_field :ibnr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :network %>
+    <%= form.text_field :network %>
+  </div>
+
+  <div class="field">
+    <%= form.label :regions %>
+    <%= form.text_field :regions %>
+  </div>
+
+  <div class="field">
+    <%= form.label :equality_treatments %>
+    <%= form.check_box :equality_treatments %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+module TarifPointsHelper
+end
