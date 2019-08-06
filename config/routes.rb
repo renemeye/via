@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :equalities
   resources :tarif_distances
   resources :tarif_points
+  resources :ticket_scanner, only: [:index]
 
   resources :map, only: [:index]
   get '/map/:tarif/:from/:via/:to' => 'map#index'
