@@ -1,4 +1,6 @@
 class MapController < ApplicationController
+  after_action :allow_iframe
+  
   def index
     @tarif = params[:tarif]
     @from = EndPoint.new(params[:from])
@@ -9,6 +11,11 @@ class MapController < ApplicationController
 
 
   private
+
+  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
+  end
+
   def parse_via_alternatives(via)
     split_on_or(via)
   end
