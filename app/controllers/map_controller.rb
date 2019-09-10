@@ -1,12 +1,14 @@
 class MapController < ApplicationController
   after_action :allow_iframe
-  
+
   def index
     @tarif = params[:tarif]
     @from = EndPoint.new(params[:from])
     @to = EndPoint.new(params[:to])
 
     @vias = parse_via_alternatives(params[:via]).map{|via| ViaChain.new(@from, via, @to)}
+
+    @bounds = @vias.first.tarif_points.collect{|tarif_point| [tarif_point.longitude, tarif_point.latitude] if tarif_point.longitude}.reject(&:blank?).values_at(0,-1)
   end
 
 
