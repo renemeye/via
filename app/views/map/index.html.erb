@@ -25,7 +25,11 @@
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/vesputi/cjybdl0hg157u1ck0pvqu1hid',
-    center: [10.414444, 53.2525],
+    bounds:[
+      [<%=@from.tarif_point.longitude%>,<%=@from.tarif_point.latitude%>],
+      [<%=@to.tarif_point.longitude%>,<%=@to.tarif_point.latitude%>]
+    ],
+    fitBoundsOptions: {padding: 40},
     zoom: 6
   });
 
